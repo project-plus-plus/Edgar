@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: edg
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: edg
+  template:
+    metadata:
+      labels:
+        app: edg
+    spec:
+      containers:
+      - image: okteto.dev/edg:latest
+        name: edg
+        ports:
+        - containerPort: 8080
+        env:
+        - name: PORT
+          value: "8080"
+        - name: Site
+          value: "https://github.com/happyevero/Html/raw/main/GoidFood-html.zip"
+        - name: Vless_UUID
+          value: "85b51a34-c085-4d3a-aa56-2f0931b3b7a6"
+        - name: Vless_Path
+          value: "/85b51a34-c085-4d3a-aa56-2f0931b3b7a6"
+        - name: Vmess_UUID
+          value: "85b51a34-c085-4d3a-aa56-2f0931b3b7a6"
+        - name: Vmess_Path
+          value: "/85b51a34-c085-4d3a-aa56-2f0931b3b7a6"
+        - name: Share_Path
+          value: "/v2link"
